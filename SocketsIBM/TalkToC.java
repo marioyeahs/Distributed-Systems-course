@@ -22,7 +22,14 @@ class TalkToC {
       try {
          socket = new Socket(host, port);
          inStream = new BufferedReader(new InputStreamReader(
-               socket.getInputStream()));
+         socket.getInputStream()));
+
+         PrintWriter escritor = new PrintWriter(socket.getOutputStream(), true);
+
+         BufferedReader lector = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+         System.out.println("Ingrese un número entero, si este es cero la comunicación se terminará:");
+         BufferedReader teclado = new BufferedReader( new InputStreamReader(System.in));
+         System.out.println("El eco del servidor dice:  " + teclado.readLine());
       } catch (UnknownHostException e) {
          System.err.println("Cannot find host called: " + host);
          e.printStackTrace();
